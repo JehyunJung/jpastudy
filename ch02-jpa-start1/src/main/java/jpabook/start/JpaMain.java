@@ -33,6 +33,7 @@ public class JpaMain {
         emf.close(); //엔티티 매니저 팩토리 종료
     }
 
+
     public static void logic(EntityManager em) {
 
         String id = "id1";
@@ -59,4 +60,5 @@ public class JpaMain {
         em.remove(member);
 
     }
+
 }
