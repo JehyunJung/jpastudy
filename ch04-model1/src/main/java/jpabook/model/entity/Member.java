@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 public class Member {
-
+    //@GeneratedValue는 기본적으로 AUTO 값 설정
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;

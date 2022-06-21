@@ -17,8 +17,6 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction(); //트랜잭션 기능 획득
 
         try {
-
-
             tx.begin(); //트랜잭션 시작
             logic(em);  //비즈니스 로직
             tx.commit();//트랜잭션 커밋
@@ -35,7 +33,7 @@ public class JpaMain {
 
     public static void logic(EntityManager em) {
 
-        String id = "id1";
+        /*String id = "id1";
         Member member = new Member();
         member.setId(id);
         member.setUsername("지한");
@@ -56,7 +54,29 @@ public class JpaMain {
         System.out.println("members.size=" + members.size());
 
         //삭제
-        em.remove(member);
+        em.remove(member);*/
 
+        /*Board board=new Board();
+        board.setName("hello");
+        em.persist(board);
+
+
+        Board board1 = em.find(Board.class,1);
+        System.out.println("board1.getId = " + board1.getId());*/
+
+        MemberTemp memberTemp = new MemberTemp();
+        memberTemp.setId(1);
+        memberTemp.setFirstName("Hi");
+        memberTemp.setLastName("Hello");
+        em.persist(memberTemp);
+
+
+        MemberTemp newMember = em.find(MemberTemp.class,1);
+        System.out.println("newMember.getId = " + newMember.getId());
+        System.out.println("newMember.getFirstName() = " + newMember.getFirstName());
+        System.out.println("newMember.getLastName() = " + newMember.getLastName());
+        System.out.println("newMember.getFullName() = " + newMember.getFullName());
+        
+        
     }
 }
