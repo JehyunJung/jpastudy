@@ -16,6 +16,9 @@ public class Parent {
     @OneToMany(mappedBy="parent",cascade=CascadeType.ALL,orphanRemoval = true)
     private List<Child> childs=new ArrayList<Child>();
 
+    public Parent() {
+    }
+
     public Parent(String name) {
         this.name=name;
     }

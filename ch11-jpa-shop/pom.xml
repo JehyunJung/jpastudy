@@ -11,6 +11,7 @@
     <name>jpa-shop</name>
     <packaging>war</packaging>
 
+
     <properties>
 
         <!-- 기본 설정 -->
@@ -124,10 +125,16 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-annotations-api</artifactId>
+            <version>7.0.47</version>
+        </dependency>
 
     </dependencies>
 
 	<build>
+        <defaultGoal>install</defaultGoal>
 		<plugins>
 	      <plugin>
 	        <groupId>org.apache.maven.plugins</groupId>

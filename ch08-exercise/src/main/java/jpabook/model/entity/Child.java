@@ -16,6 +16,9 @@ public class Child {
     @JoinColumn(name="PARENT_ID")
     private Parent parent;
 
+    public Child() {
+    }
+
     public Child(String name) {
         this.name=name;
     }

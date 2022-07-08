@@ -39,10 +39,21 @@ public class Main {
     }
 
     public static void logic(EntityManager em){
-        Parent parent=new Parent("parent");
-
+        /*Parent parent=em.find(Parent.class,1L);
 
         Child child1=new Child("child1");
+        child1.setParent(parent);
+        parent.getChilds().add(child1);
+        em.persist(child1);*/
+        Child newChild=em.find(Child.class,1L);
+        Parent newParent=newChild.getParent();
+        System.out.println("newChild.getName() = " + newChild.getName());
+        System.out.println("newParent.getClass() = " + newParent.getClass());
+        
+
+
+
+        /*Child child1=new Child("child1");
         child1.setParent(parent);
         parent.getChilds().add(child1);
 
@@ -68,7 +79,7 @@ public class Main {
         Child newChild=em.find(Child.class,2L);
         System.out.println("newChild.getParent() = " + newChild.getId());
         System.out.println("newChild.getParent() = " + newChild.getParent());
-        System.out.println("newChild.getName() = " + newChild.getName());
+        System.out.println("newChild.getName() = " + newChild.getName());*/
     }
 
 }

@@ -40,27 +40,7 @@ public class Main {
 
         emf.close(); //엔티티 매니저 팩토리 종료
     }
-
-    public static void logic(EntityManager em){
-     /*   EntityGraph graph = em.getEntityGraph("Order.withAll");
-
-        Map hints = new HashMap();
-        hints.put("javax.persistence.fetchgraph", graph);
-
-        Order order = em.find(Order.class, 1L, hints);
-        /*List<Order> resultList = em.createQuery("SELECT o FROM Order o JOIN FETCH o.member WHERE o.id = :orderId", Order.class)
-                .setParameter("orderId", 1L)
-                .setHint("javax.persistence.fetchgraph", em.getEntityGraph("Order.withAll"))
-                .getResultList();*/
-
-
-/*      Member member = em.find(Member.class, 1L);
-        List<Order> orders = member.getOrders();
-        for (Order order : orders) {
-            System.out.println("order.getName() = " + order.getName());
-        }*/
-
-/*
+    public static void insert(EntityManager em){
         Member member1 = new Member();
         member1.setName("member1");
         em.persist(member1);
@@ -88,10 +68,30 @@ public class Main {
         OrderItem oi2=new OrderItem();
         oi2.setItem(item2);
         order1.addOrderItem(oi2);
-*/
+    }
+    public static void logic(EntityManager em){
+     /*   EntityGraph graph = em.getEntityGraph("Order.withAll");
+
+        Map hints = new HashMap();
+        hints.put("javax.persistence.fetchgraph", graph);
+
+        Order order = em.find(Order.class, 1L, hints);
+        /*List<Order> resultList = em.createQuery("SELECT o FROM Order o JOIN FETCH o.member WHERE o.id = :orderId", Order.class)
+                .setParameter("orderId", 1L)
+                .setHint("javax.persistence.fetchgraph", em.getEntityGraph("Order.withAll"))
+                .getResultList();*/
 
 
-        List<Order> orders = em.createQuery("SELECT o FROM Order o join fetch o.member", Order.class)
+/*      Member member = em.find(Member.class, 1L);
+        List<Order> orders = member.getOrders();
+        for (Order order : orders) {
+            System.out.println("order.getName() = " + order.getName());
+        }*/
+
+      //insert(em);
+
+
+      /*  List<Order> orders = em.createQuery("SELECT o FROM Order o join fetch o.member", Order.class)
                 .setHint("javax.persistence.fetchgraph", em.getEntityGraph("Order.withAll"))
                 .getResultList();
         for(Order order:orders){
@@ -105,7 +105,17 @@ public class Main {
                 System.out.println("orderItem.getItem() = " + orderItem.getItem());
                 System.out.println("orderItem.getItem() = " + orderItem.getItem().getName());
             }
-        }
+        }*/
+
+        EntityGraph graph = em.createEntityGraph(Order.class);
+        graph.addAttributeNodes("member");
+        Subgraph<OrderItem> orderItems=graph.addSubgraph("orderItems");
+        orderItems.addAttributeNodes("item");
+
+        Map hints = new HashMap();
+        hints.put("javax.persistence.fetchgraph", graph);
+
+        Order order = em.find(Order.class,11L, hints);
 
     }
 
