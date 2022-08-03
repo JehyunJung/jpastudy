@@ -45,15 +45,20 @@ public class Main {
         //회원1 저장
         Member member1 = new Member("member1", "회원1");
         member1.setTeam(team1);     //연관관계 설정 member1 -> team1
-        team1.getMembers().add(member1);
+        //team1.getMembers().add(member1);
         em.persist(member1);
 
         //회원2 저장
         Member member2 = new Member("member2", "회원2");
         member2.setTeam(team1);     //연관관계 설정 member2 -> team1
-        team1.getMembers().add(member2);
+        //team1.getMembers().add(member2);
         em.persist(member2);
 
+        Member newMember = em.find(Member.class, "member1");
+        System.out.println("newMember.getId() = " + newMember.getId());
+        System.out.println("newMember.getUsername() = " + newMember.getUsername());
+        System.out.println("newMember.getTeam() = " + newMember.getTeam().getId());
+        
         Team newTeam=em.find(Team.class,"team1");
         System.out.println("newTeam.getId() = " + newTeam.getId());
         System.out.println("newTeam.getName() = " + newTeam.getName());

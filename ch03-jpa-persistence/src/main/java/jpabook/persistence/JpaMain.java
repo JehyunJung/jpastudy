@@ -92,6 +92,11 @@ public class JpaMain {
 
             //영속 상태의 엔티티
             System.out.println("mergeMember username:"+mergedMember.getUsername());
+
+            //영속성 컨텍스트에 포함되어 있는 지 여부?
+
+            System.out.println("기존의 준영속 상태의 entity: " +  em.contains(member));
+            System.out.println("병합한 entity: " + em.contains(mergedMember));
         }catch(Exception e){
             tx.rollback();
         }
